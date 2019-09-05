@@ -20,6 +20,7 @@ Route::group( ['middleware' => 'auth'], function()
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/users','AccountController@view_users');
     Route::post('/change-password','AccountController@change_password');
+    Route::post('/add-account','AccountController@new_account');
 }
 );
 

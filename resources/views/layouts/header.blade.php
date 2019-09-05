@@ -16,7 +16,7 @@
     <link href="{{ asset('/body/css/paper-dashboard.css?v=2.0.0')}}" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     {{-- <link href="{{ asset('/body/demo/demo.css')}}../assets/" rel="stylesheet" /> --}}
-    
+    <link rel="stylesheet" type="text/css" href="{{ asset('/chosen/chosen.css')}}">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
@@ -154,17 +154,20 @@
     <script src="{{ asset('/body/js/core/jquery.min.js')}}"></script>
     <script src="{{ asset('/body/js/core/popper.min.js')}}"></script>
     <script src="{{ asset('/body/js/core/bootstrap.min.js')}}"></script>
-    <script src="{{ asset('/body/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
+    {{-- <script src="{{ asset('/body/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script> --}}
     <!--  Google Maps Plugin    -->
     {{-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> --}}
     <!-- Chart JS -->
-    <script src="{{ asset('/body/js/plugins/chartjs.min.js')}}"></script>
+    {{-- <script src="{{ asset('/body/js/plugins/chartjs.min.js')}}"></script> --}}
     <!--  Notifications Plugin    -->
-    <script src="{{ asset('/body/js/plugins/bootstrap-notify.js')}}"></script>
+    {{-- <script src="{{ asset('/body/js/plugins/bootstrap-notify.js')}}"></script> --}}
     <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="{{ asset('/body/js/paper-dashboard.min.js?v=2.0.0')}}" type="text/javascript"></script>
+    {{-- <script src="{{ asset('/body/js/paper-dashboard.min.js?v=2.0.0')}}" type="text/javascript"></script> --}}
     <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
     {{-- <script src="{{ asset('/body/js/plugins/perfect-scrollbar.jquery.min.js')}}../assets/demo/demo.js"></script> --}}
-    
+    <script src="{{ asset('chosen/docsupport/jquery-3.2.1.min.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('chosen/chosen.jquery.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('chosen/docsupport/prism.js')}}" type="text/javascript" charsgiet="utf-8"></script>
+    <script src="{{ asset('chosen/docsupport/init.js')}}" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

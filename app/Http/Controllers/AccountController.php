@@ -12,8 +12,6 @@ class AccountController extends Controller
     //
     public function view_users()
     {
-    
-      
         $roles = Role::orderBy('role_name','asc')->get();
         $role_array = collect($roles)->toArray();
 
@@ -25,13 +23,12 @@ class AccountController extends Controller
         ->get();
 
         $account_id = collect($accounts->pluck('user_id'))->toArray();
-
-        $employees = Employee::with('company','department','users')
+        $employees = Employee::with('company','department')
         ->where('status','Active')
-        // // ->whereNotIn('user_id',$account_id)
-        ->orderBy('first_name','asc')
+        ->whereNotIn('user_id',$account_id)
+        ->orderBy(trim('first_name'),'asc')
         ->get();
-        return ($employees);
+        // return ($employees);
         return view('users',array(
             'header' => "Users",
             'roles' => $roles,
@@ -51,6 +48,18 @@ class AccountController extends Controller
         $data->password = bcrypt($request->input('password'));
         $data->save();
         $request->session()->flash('status','Your Password Successfully Changed!');
+        return back();
+    }
+    public function new_account(Request $request)
+    {
+        foreach($request->name as $name)
+        {
+        $account = new Account;
+        $account->user_id = $name;
+        $account->role = json_encode($request->roles);
+        $account->save();
+        }
+        $request->session()->flash('status','New Account Successfully added!');
         return back();
     }
 }

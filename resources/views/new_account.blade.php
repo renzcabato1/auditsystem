@@ -25,10 +25,10 @@
                     <div class='row'>
                         <div class='col-md-12'>
                             Email :
-                            <select class='form-control chosen-select' name="name" id='email' data-placeholder="Choose Employee..."  required>
+                            <select class='form-control chosen-select' name="name[]" id='email' data-placeholder="Choose Employee..." multiple  required>
                                 <option></option>
                                 @foreach($employees as $employee)
-                                <option value='{{$employee->user_id}}'>{{$employee->name}}</option>
+                                <option value='{{$employee->user_id}}'>{{$employee->first_name.' '.$employee->last_name}}</option>
                                 @endforeach
                             </select>
                         </div>
