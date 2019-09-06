@@ -15,12 +15,14 @@
 Auth::routes();
 Route::group( ['middleware' => 'auth'], function()
 {
-  
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/', 'HomeController@index')->name('home');
-    Route::get('/users','AccountController@view_users');
-    Route::post('/change-password','AccountController@change_password');
-    Route::post('/add-account','AccountController@new_account');
+    Route::get('/users','AccountController@viewUsers');
+    Route::post('/change-password','AccountController@changePassword');
+    Route::post('/add-account','AccountController@newAccount');
+    Route::post('/edit-account/{id}','AccountController@editAccount');
+    Route::get('/reset-account/{id}','AccountController@resetPassword');
+    Route::get('/remove-account/{id}','AccountController@removeAccount');
 }
 );
 

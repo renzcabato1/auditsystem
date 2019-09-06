@@ -10,25 +10,22 @@ use Illuminate\Http\Request;
 class AccountController extends Controller
 {
     //
-    public function view_users()
+    public function viewUsers()
     {
         $roles = Role::orderBy('role_name','asc')->get();
         $role_array = collect($roles)->toArray();
 
-        $accounts = Account::leftJoin('hr_portal.users as hr_users','accounts.user_id','=','hr_users.id')
-        ->leftJoin('hr_portal.employees as employee_data','hr_users.id','=','employee_data.user_id')
-        ->leftJoin('hr_portal.department_employee as department_employee','employee_data.id','=','department_employee.employee_id')
-        ->leftJoin('hr_portal.departments as departments','department_employee.department_id','=','departments.id')
-        ->select('accounts.*','hr_users.*','employee_data.*','accounts.id as account_id','departments.name as department_name')
+        $accounts = Account::with('employee_info','employee_info.companies','employee_info.departments')
         ->get();
-
+        // return ($accounts);
         $account_id = collect($accounts->pluck('user_id'))->toArray();
-        $employees = Employee::with('company','department')
+        $employees = Employee::with('companies','departments')
         ->where('status','Active')
         ->whereNotIn('user_id',$account_id)
         ->orderBy(trim('first_name'),'asc')
         ->get();
         // return ($employees);
+        
         return view('users',array(
             'header' => "Users",
             'roles' => $roles,
@@ -38,7 +35,7 @@ class AccountController extends Controller
         ));
         
     }
-    public function change_password(Request $request)
+    public function changePassword(Request $request)
     {
         $this->validate(request(),[
             'password' => 'required|min:8|confirmed',
@@ -50,7 +47,7 @@ class AccountController extends Controller
         $request->session()->flash('status','Your Password Successfully Changed!');
         return back();
     }
-    public function new_account(Request $request)
+    public function newAccount(Request $request)
     {
         foreach($request->name as $name)
         {
@@ -61,5 +58,27 @@ class AccountController extends Controller
         }
         $request->session()->flash('status','New Account Successfully added!');
         return back();
+    }
+    public function editAccount(Request $request,$id)
+    {
+        $account = Account::findOrfail($id);
+        $account->role = json_encode($request->roles);
+        $account->save();
+        $request->session()->flash('status','Successfully Changed!');
+        return back();
+    }
+    public function resetPassword(Request $request,$id)
+    {
+        $data =  User::find($id);
+        $data->password = bcrypt(12345678);
+        $data->save();
+        $request->session()->flash('status','New password : 12345678');
+        return back();
+    }
+    public function removeAccount(Request $request,$id)
+    {
+        $account = Account::destroy($id);
+        $request->session()->flash('status','Successfully Removed!');
+         return back();
     }
 }

@@ -9,7 +9,7 @@ class Account extends Model
     //
     public function employee_info()
     {
-        return $this->belongsToMany(Employee::class,'user_id','user_id');
+        return $this->hasOne(Employee::class,'user_id','user_id');
     }
     
 }

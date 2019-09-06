@@ -11,14 +11,19 @@
     
     <!-- Scripts -->
     {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
+    <link href="{{ asset('/datatable/jquery.dataTables.min.css')}}" rel="stylesheet" />
+    <link href="{{ asset('/datatable/fixedColumns.dataTables.min.css')}}" rel="stylesheet" />
     <link rel="icon" type="image/png" href="{{ asset('/images/logo.ico')}}"/>
     <link href="{{ asset('/body/css/bootstrap.min.css')}}" rel="stylesheet" />
     <link href="{{ asset('/body/css/paper-dashboard.css?v=2.0.0')}}" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     {{-- <link href="{{ asset('/body/demo/demo.css')}}../assets/" rel="stylesheet" /> --}}
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="{{ asset('/chosen/chosen.css')}}">
+    {{-- <script type="text/javascript" src="{{ asset('/js/app.js')}}"></script> --}}
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  
     <style>
         .loader {
             position: fixed;
@@ -31,6 +36,24 @@
             opacity: .8;
             background-size:200px 120px;
         }
+        #user_table_filter
+        {
+            padding-right: 20px;
+        }
+        #user_table_filter input {
+            display: inline-block;
+            width: 100%;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        }
+       
     </style>
 </head>
 <body>
@@ -42,13 +65,13 @@
                     Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
                 -->
                 <div class="logo">
-                    <a href="http://www.creative-tim.com" class="simple-text logo-mini">
+                    <a href="" class="simple-text logo-mini">
                         <div class="logo-image-small">
-                            <img class="avatar border-gray" src="{{'http://10.96.4.40:8441/hrportal/public/id_image/employee_image/'.auth()->user()->employee_info()->id.'.png'}}">
+                            <img class="avatar border-gray" src="{{URL::asset('/images/front-logo.png')}}">
                         </div>
                     </a>
-                    <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-                        {{auth()->user()->employee_info()->first_name}}
+                    <a href="" class="simple-text logo-normal">
+                        {{ config('app.name', 'Laravel') }}
                         <!-- <div class="logo-image-big">
                             <img src="../assets/img/logo-big.png">
                         </div> -->
@@ -80,6 +103,12 @@
                                 <p>Users</p>
                             </a>
                         </li>
+                        <li @if($header == "Manage Users") class="active" @endif>
+                            <a href="{{ url('/manage-users') }}" onclick='show()'> 
+                                <i class="nc-icon nc-tile-56"></i>
+                                <p>Manage User</p>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -103,11 +132,11 @@
                             <span class="navbar-toggler-bar navbar-kebab"></span>
                         </button>
                         <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                            
                             <ul class="navbar-nav">
                                 <li class="nav-item ">
                                     <a class="nav-link dropdown-toggle" href="#" id="account" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="nc-icon nc-single-02"></i>
+                                        {{auth()->user()->employee_info()->first_name}}
                                         <p>
                                             <span class="d-lg-none d-md-block">Account</span>
                                         </p>
@@ -154,20 +183,22 @@
     <script src="{{ asset('/body/js/core/jquery.min.js')}}"></script>
     <script src="{{ asset('/body/js/core/popper.min.js')}}"></script>
     <script src="{{ asset('/body/js/core/bootstrap.min.js')}}"></script>
-    {{-- <script src="{{ asset('/body/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script> --}}
+    <script src="{{ asset('/body/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
     <!--  Google Maps Plugin    -->
     {{-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> --}}
     <!-- Chart JS -->
-    {{-- <script src="{{ asset('/body/js/plugins/chartjs.min.js')}}"></script> --}}
+    <script src="{{ asset('/body/js/plugins/chartjs.min.js')}}"></script>
     <!--  Notifications Plugin    -->
-    {{-- <script src="{{ asset('/body/js/plugins/bootstrap-notify.js')}}"></script> --}}
+    <script src="{{ asset('/body/js/plugins/bootstrap-notify.js')}}"></script>
     <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-    {{-- <script src="{{ asset('/body/js/paper-dashboard.min.js?v=2.0.0')}}" type="text/javascript"></script> --}}
+    <script src="{{ asset('/body/js/paper-dashboard.min.js?v=2.0.0')}}" type="text/javascript"></script>
     <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
     {{-- <script src="{{ asset('/body/js/plugins/perfect-scrollbar.jquery.min.js')}}../assets/demo/demo.js"></script> --}}
     <script src="{{ asset('chosen/docsupport/jquery-3.2.1.min.js')}}" type="text/javascript"></script>
     <script src="{{ asset('chosen/chosen.jquery.js')}}" type="text/javascript"></script>
     <script src="{{ asset('chosen/docsupport/prism.js')}}" type="text/javascript" charsgiet="utf-8"></script>
     <script src="{{ asset('chosen/docsupport/init.js')}}" type="text/javascript" charset="utf-8"></script>
+    <script src="{{ asset('/datatable/jquery.dataTables.min.js')}}"></script>
+    <script src="{{ asset('/datatable/dataTables.fixedColumns.min.js')}}"></script>
 </body>
 </html>

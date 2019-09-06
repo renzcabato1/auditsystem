@@ -24,9 +24,12 @@
                 
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table">
+                        <table id='user_table' class="table">
                             <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#new_account" data-toggle="new_account"><i class='nc-icon nc-simple-add'></i> New User</button>
                             <thead class=" text-primary">
+                                <th>
+                                   
+                                </th>
                                 <th>
                                     Name
                                 </th>
@@ -44,8 +47,55 @@
                                 </th>
                             </thead>
                             <tbody>
+                                @foreach($accounts as $account)
+                                <tr>
+                                    <td>
+                                        <img class="logo-image-small avatar border-gray" src="{{'http://10.96.4.40:8441/hrportal/public/id_image/employee_image/'.$account->employee_info->id.'.png'}}">
+                                    </td>
+                                    <td>
+                                        {{$account->employee_info->first_name.' '.$account->employee_info->last_name}}
+                                    </td>
+                                    <td>
+                                        {{$account['employee_info']['companies'][0]->name}}
+                                    </td>
+                                    <td>
+                                       {{$account['employee_info']['departments'][0]->name}}
+                                    </td>
+                                    <td >
+                                            @foreach(json_decode($account->role) as $role) 
+                                            @php
+                                            $key = array_search($role, array_column($role_array, 'id'));
+                                            @endphp
+                                            {{$roles[$key]->role_name}}
+                                            <br>
+                                            <br>
+                                            @endforeach
+                                    </td>
+                                    <td >
+                                            <button type="button"  href="#edit_account{{$account->id}}" data-toggle="modal"  class="btn btn-outline-info btn-sm" title='Edit'><i class="nc-icon nc-ruler-pencil"></i> </button>
+                                            <a href="reset-account/{{$account->id}}" onclick="javascript:return confirm('Are you sure you want to reset password ?')">
+                                                <button type="button" class="btn btn-outline-success btn-sm" title='Reset'><i class="nc-icon nc-refresh-69"></i> </button>
+                                            </a>
+                                            <a href="remove-account/{{$account->id}}" onclick="javascript:return confirm('Are you sure you want to remove this account ?')">
+                                               
+                                            <button type="button" class="btn btn-outline-danger btn-sm" title='Remove'><i class="nc-icon nc-simple-remove"></i> </button>
+                                            </a>
+                                    </td>
+                                    @include('edit')
+                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
+                        <script  type="text/javascript">
+       
+                            $(document).ready(function() {
+                                $('#user_table').DataTable(
+                                    {
+                                         // scrollX: true,
+                                    }
+                                );
+                            } );
+                        </script>
                     </div>
                 </div>
                 @include('new_account')
