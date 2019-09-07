@@ -17,12 +17,20 @@ Route::group( ['middleware' => 'auth'], function()
 {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/', 'HomeController@index')->name('home');
+
+    //users function
     Route::get('/users','AccountController@viewUsers');
     Route::post('/change-password','AccountController@changePassword');
     Route::post('/add-account','AccountController@newAccount');
     Route::post('/edit-account/{id}','AccountController@editAccount');
     Route::get('/reset-account/{id}','AccountController@resetPassword');
     Route::get('/remove-account/{id}','AccountController@removeAccount');
+    
+    
+    
+    //manage account
+    Route::get('/manage-users','ManageUserController@viewManageAccount');
+    Route::get('/manage-account-edit/{account_id}','ManageUserController@editManageAccount');
 }
 );
 

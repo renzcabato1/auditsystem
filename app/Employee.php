@@ -8,7 +8,7 @@ class Employee extends Model
 {
     //
     protected $connection = 'hr_portal';
-    protected $visible = array('id', 'user_id', 'last_name', 'first_name', 'middle_name','company','department','users');
+    protected $visible = array('id', 'user_id', 'last_name', 'first_name', 'middle_name','users');
     public function companies()
     {
         return $this->belongsToMany(Company::class);

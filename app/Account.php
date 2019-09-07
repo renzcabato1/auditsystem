@@ -11,5 +11,9 @@ class Account extends Model
     {
         return $this->hasOne(Employee::class,'user_id','user_id');
     }
+    public function manage_user()
+    {
+        return $this->hasMany(ManageUser::class,'approver_id','user_id');
+    }
     
 }

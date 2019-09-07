@@ -17,7 +17,7 @@ class AccountController extends Controller
 
         $accounts = Account::with('employee_info','employee_info.companies','employee_info.departments')
         ->get();
-        // return ($accounts);
+        // dd ($accounts);
         $account_id = collect($accounts->pluck('user_id'))->toArray();
         $employees = Employee::with('companies','departments')
         ->where('status','Active')
@@ -81,4 +81,5 @@ class AccountController extends Controller
         $request->session()->flash('status','Successfully Removed!');
          return back();
     }
+  
 }

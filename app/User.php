@@ -43,5 +43,4 @@ class User extends Authenticatable
     public function employee_info(){
         return Employee::where('user_id', Auth::user()->id)->get()->first();
     }
-  
 }
