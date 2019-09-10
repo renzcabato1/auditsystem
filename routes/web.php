@@ -37,6 +37,11 @@ Route::group( ['middleware' => 'auth'], function()
 
     //business unit
     Route::get('business-unit','BusinessUnitController@viewBusinessUnit');
+    Route::post('add-business','BusinessUnitController@newBusinessUnit');
+    Route::post('edit-business/{codeId}','BusinessUnitController@editBusinessUnit');
+
+    //issue
+    Route::get('issue','IssueController@viewIssues');
 }
 );
 

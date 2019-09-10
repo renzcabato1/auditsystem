@@ -102,18 +102,42 @@
                                 <p>Dashboard</p>
                             </a>
                         </li>
-                        <li  @if($header == "Open Issue") class="active" @endif>
-                            <a href="" onclick='show()'>
+                        <li  @if($header == "Issues") class="active" @endif>
+                            <a href="{{ url('/issue') }}" onclick='show()'>
+                                <i class="nc-icon nc-zoom-split"></i>
+                                <p>Issues</p>
+                            </a>
+                        </li>
+                        {{-- <li  @if($header == "Lead Ongoing") class="active" @endif>
+                                <a href="{{ url('/lead-ongoing') }}" onclick='show()'>
+                                    <i class="nc-icon nc-align-center"></i>
+                                    <p>Lead Ongoing</p>
+                                </a>
+                            </li>
+                        <li  @if($header == "List Ongoing") class="active" @endif>
+                            <a href="{{ url('/list-ongoing') }}" onclick='show()'>
+                                <i class="nc-icon nc-align-left-2"></i>
+                                <p>List Ongoing</p>
+                            </a>
+                        </li>
+                        <li  @if($header == "Closed") class="active" @endif>
+                            <a href="{{ url('/closed') }}" onclick='show()'>
+                                <i class="nc-icon nc-simple-remove"></i>
+                                <p>Closed</p>
+                            </a>
+                        </li>
+                        <li  @if($header == "Lead Not Due") class="active" @endif>
+                            <a href="{{ url('/lead-not-due') }}" onclick='show()'>
                                 <i class="nc-icon nc-align-center"></i>
-                                <p>Open Issue</p>
+                                <p>Lead Not Due</p>
                             </a>
                         </li>
-                        <li @if($header == "For Audit") class="active" @endif>
-                            <a href="" onclick='show()'>
-                                <i class="nc-icon nc-settings"></i>
-                                <p>For Audit</p>
+                        <li  @if($header == "List Not Due") class="active" @endif>
+                            <a href="{{ url('/list-not-due') }}" onclick='show()'>
+                                <i class="nc-icon nc-align-center"></i>
+                                <p>List Not Due</p>
                             </a>
-                        </li>
+                        </li> --}}
                         <li @if($header == "Users") class="active" @endif>
                             <a href="{{ url('/users') }}" onclick='show()'> 
                                 <i class="nc-icon nc-single-02"></i>

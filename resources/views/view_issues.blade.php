@@ -15,55 +15,52 @@
         </div>
     </div>
     @endif
-    @include('error')
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title"> </h4>
                 </div>
+                
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id='business_units' class="table">
-                            <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#new_bu" data-toggle="new_account"><i class='nc-icon nc-simple-add'></i> New Business Unit</button>
+                        <table id='issues_view' class="table">
+                            <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#new_issue" data-toggle="new_issue"><i class='nc-icon nc-simple-add'></i> New Issue</button>
                             <thead class=" text-primary">
                                 <th>
-                                    Cluster
+                                    Audit Team
                                 </th>
                                 <th>
-                                    Business Unit
+                                    Engagement Title
                                 </th>
                                 <th>
-                                    Code
+                                    Issue
+                                </th>
+                                <th>
+                                    Priority Rating
+                                </th>
+                                <th>
+                                    BU Responsible
+                                </th>
+                                <th >
+                                    Action Owner
+                                </th>
+                                <th >
+                                    Committed Date
                                 </th>
                                 <th >
                                     Action
                                 </th>
                             </thead>
                             <tbody>
-                                @foreach($codes as $code)
-                                <tr>
-                                    <td>
-                                            {{$code['cluster_info']->cluster_name}}
-                                    </td>
-                                    <td>
-                                        {{$code->bu_name}}
-                                    </td>
-                                    <td>
-                                            {{$code->bu_code}}
-                                    </td>
-                                    <td>
-                                            <button type="button"  href="#edit_bu{{$code->id}}" data-toggle="modal" title='Edit' class="btn btn-outline-dark">Edit</button>
-                                    </td>
-                                </tr>
-                                @include('edit_bu')
-                            @endforeach
+                                
                             </tbody>
                         </table>
+                        @include('new_issue')
                         <script  type="text/javascript">
                             
                             $(document).ready(function() {
-                                $('#business_units').DataTable(
+                                $('#issues_view').DataTable(
                                 {
                                     // scrollX: true,
                                 }
@@ -71,7 +68,6 @@
                             } );
                         </script>
                     </div>
-                    @include('new_bu')
                 </div>
             </div>
         </div>

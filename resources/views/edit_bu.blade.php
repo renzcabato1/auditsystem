@@ -1,9 +1,9 @@
-<div class="modal fade" id="new_bu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="edit_bu{{$code->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <div class='col-md-10'>
-                    <h5 class="modal-title" id="exampleModalLabel">New Business Unit</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Business Unit</h5>
                 </div>
                 <div class='col-md-2'>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -11,13 +11,7 @@
                     </button>
                 </div>
             </div>
-            <style>
-                
-                #roles_chosen{
-                    width: 100% !important;
-                }
-            </style>
-            <form  method='POST' action='add-business' onsubmit='show();'  >
+            <form  method='POST' action='edit-business/{{$code->id}}' onsubmit='show();'  >
                 <div class="modal-body">
                     {{ csrf_field() }}
                     <div class='row'>
@@ -26,7 +20,7 @@
                             <select class='form-control' name="cluster" required>
                                 <option></option>
                                 @foreach($clusters as $cluster)
-                                <option value='{{$cluster->id}}'>{{$cluster->cluster_name}}</option>
+                                <option value='{{$cluster->id}}' {{ (($cluster->id == $code->cluster_id) ? "selected":"") }}>{{$cluster->cluster_name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -34,13 +28,13 @@
                     <div class='row'>
                         <div class='col-md-12'>
                             Business Unit:
-                            <input class='form-control' name='bu_name' required>
-                        </div>
+                            <input class='form-control' name='bu_name' value='{{$code->bu_name}}' required>
+                    </div>
                     </div>
                     <div class='row'>
                         <div class='col-md-12'>
                             Code:
-                            <input class='form-control' name='bu_code' required>
+                            <input class='form-control' name='bu_code' value='{{$code->bu_code}}' required>
                         </div>
                     </div>
                 </div>
