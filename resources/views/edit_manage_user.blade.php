@@ -44,7 +44,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Employee <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#new_account" data-toggle="new_account"><i class='nc-icon nc-simple-add'></i> New </button>
+                    <h4 class="card-title">Employee <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#new_manage_user" data-toggle="new_account"><i class='nc-icon nc-simple-add'></i> New </button>
                     </h4>
                 </div>
                 <div class="card-body">
@@ -85,12 +85,11 @@
                                        <a onclick='show()' href='remove-user/{{$manage_user->id}}'><button type="button" class="btn btn-outline-danger" title='remove'><i class='nc-icon nc-simple-remove'></i></button></a>
                                 </td>
                             </tr>
-                            
                             @endforeach
                         </tbody>
                     </table>
+                    @include('new_manage_user')
                     <script  type="text/javascript">
-                        
                         $(document).ready(function() {
                             $('#edit_user_table').DataTable(
                             {

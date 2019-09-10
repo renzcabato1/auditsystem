@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 
 class AccountController extends Controller
 {
-    //
     public function viewUsers()
     {
         $roles = Role::orderBy('role_name','asc')->get();
@@ -20,7 +19,7 @@ class AccountController extends Controller
         // dd ($accounts);
         $account_id = collect($accounts->pluck('user_id'))->toArray();
         $employees = Employee::with('companies','departments')
-        ->where('status','Active')
+        ->where('status','!=','Inactive')
         ->whereNotIn('user_id',$account_id)
         ->orderBy(trim('first_name'),'asc')
         ->get();
@@ -81,5 +80,4 @@ class AccountController extends Controller
         $request->session()->flash('status','Successfully Removed!');
          return back();
     }
-  
 }

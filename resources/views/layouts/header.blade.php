@@ -23,7 +23,7 @@
     {{-- <script type="text/javascript" src="{{ asset('/js/app.js')}}"></script> --}}
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-  
+    
     <style>
         .loader {
             position: fixed;
@@ -70,7 +70,7 @@
             border-radius: .25rem;
             transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
         }
-       
+        
     </style>
 </head>
 <body>
@@ -124,6 +124,18 @@
                             <a href="{{ url('/manage-users') }}" onclick='show()'> 
                                 <i class="nc-icon nc-tile-56"></i>
                                 <p>Manage User</p>
+                            </a>
+                        </li>
+                        <li @if($header == "Auditors") class="active" @endif>
+                            <a href="{{ url('/auditors') }}" onclick='show()'> 
+                                <i class="nc-icon nc-circle-10"></i>
+                                <p>Auditors</p>
+                            </a>
+                        </li>
+                        <li @if($header == "Business Unit") class="active" @endif>
+                            <a href="{{ url('/business-unit') }}" onclick='show()'> 
+                                <i class="nc-icon nc-paper"></i>
+                                <p>Business Units</p>
                             </a>
                         </li>
                     </ul>

@@ -26,11 +26,17 @@ Route::group( ['middleware' => 'auth'], function()
     Route::get('/reset-account/{id}','AccountController@resetPassword');
     Route::get('/remove-account/{id}','AccountController@removeAccount');
     
-    
-    
     //manage account
     Route::get('/manage-users','ManageUserController@viewManageAccount');
     Route::get('/manage-account-edit/{account_id}','ManageUserController@editManageAccount');
+    Route::post('/manage-account-edit/new-manage-account/{userId}','ManageUserController@newManageUser');
+    Route::get('manage-account-edit/remove-user/{manageUserId}','ManageUserController@removeManageUser');
+    //auditors
+    Route::get('/auditors','AuditorController@auditorView');
+    Route::post('edit-account-auditor/{accountId}','AuditorController@saveEditAccount');
+
+    //business unit
+    Route::get('business-unit','BusinessUnitController@viewBusinessUnit');
 }
 );
 

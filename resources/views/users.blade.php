@@ -50,7 +50,7 @@
                                 @foreach($accounts as $account)
                                 <tr>
                                     <td>
-                                        <img class="logo-image-small avatar border-gray" src="{{'http://10.96.4.40:8441/hrportal/public/id_image/employee_image/'.$account->employee_info->id.'.png'}}">
+                                        <img  class="logo-image-small avatar border" src="{{'http://10.96.4.40:8441/hrportal/public/id_image/employee_image/'.$account->employee_info->id.'.png'}}">
                                     </td>
                                     <td>
                                         {{$account->employee_info->first_name.' '.$account->employee_info->last_name}}
@@ -64,7 +64,7 @@
                                     <td >
                                             @foreach(json_decode($account->role) as $role) 
                                             @php
-                                            $key = array_search($role, array_column($role_array, 'id'));
+                                                $key = array_search($role, array_column($role_array, 'id'));
                                             @endphp
                                             {{$roles[$key]->role_name}}
                                             <br>
@@ -72,7 +72,7 @@
                                             @endforeach
                                     </td>
                                     <td >
-                                            <button type="button"  href="#edit_account{{$account->id}}" data-toggle="modal"  class="btn btn-outline-info btn-sm" title='Edit'><i class="nc-icon nc-ruler-pencil"></i> </button>
+                                            <button type="button"  href="#edit_account{{$account->id}}" data-toggle="modal" title='Edit'  class="btn btn-outline-info btn-sm" ><i class="nc-icon nc-ruler-pencil"></i> </button>
                                             <a href="reset-account/{{$account->id}}" onclick="javascript:return confirm('Are you sure you want to reset password ?')">
                                                 <button type="button" class="btn btn-outline-success btn-sm" title='Reset'><i class="nc-icon nc-refresh-69"></i> </button>
                                             </a>
