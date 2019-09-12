@@ -144,12 +144,12 @@
                                 <p>Users</p>
                             </a>
                         </li>
-                        <li @if($header == "Manage Users") class="active" @endif>
+                        {{-- <li @if($header == "Manage Users") class="active" @endif>
                             <a href="{{ url('/manage-users') }}" onclick='show()'> 
                                 <i class="nc-icon nc-tile-56"></i>
                                 <p>Manage User</p>
                             </a>
-                        </li>
+                        </li> --}}
                         <li @if($header == "Auditors") class="active" @endif>
                             <a href="{{ url('/auditors') }}" onclick='show()'> 
                                 <i class="nc-icon nc-circle-10"></i>

@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Employee;
+use App\Account;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -43,5 +44,9 @@ class User extends Authenticatable
     public function employee_info()
     {
         return Employee::where('user_id', Auth::user()->id)->get()->first();
+    }
+    public function team_id()
+    {
+        return Account::where('user_id',Auth::user()->id)->first();
     }
 }

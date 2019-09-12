@@ -53,7 +53,32 @@
                                 </th>
                             </thead>
                             <tbody>
-                                
+                                @foreach($issues as $issue)
+                                <th>
+                                    {{$issue['team_name']->team_name}}
+                                </th>
+                                <th>
+                                    {{$issue->engagement_title}}
+                                </th>
+                                <th>
+                                    {{$issue->issue}}
+                                </th>
+                                <th>
+                                    {{$issue['rating_value']->rating_name}}
+                                </th>
+                                <th>
+                                    {{$issue['bu_code_info']->bu_code}}
+                                </th>
+                                <th >
+                                    {{$issue['employee_info']->first_name.' '.$issue['employee_info']->last_name}}
+                                </th>
+                                <th >
+                                    {{date('M. d, Y',strtotime($issue->committed_date))}}
+                                </th>
+                                <th >
+                                    Action
+                                </th>
+                                @endforeach
                             </tbody>
                         </table>
                         @include('new_issue')

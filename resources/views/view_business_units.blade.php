@@ -36,6 +36,15 @@
                                 <th>
                                     Code
                                 </th>
+                                <th>
+                                    Cluster Head
+                                </th>
+                                <th>
+                                    BU Head
+                                </th>
+                                <th>
+                                    Managers
+                                </th>
                                 <th >
                                     Action
                                 </th>
@@ -44,20 +53,36 @@
                                 @foreach($codes as $code)
                                 <tr>
                                     <td>
-                                            {{$code['cluster_info']->cluster_name}}
+                                        {{$code['cluster_info']->cluster_name}}
                                     </td>
                                     <td>
                                         {{$code->bu_name}}
                                     </td>
                                     <td>
-                                            {{$code->bu_code}}
+                                        {{$code->bu_code}}
                                     </td>
                                     <td>
-                                            <button type="button"  href="#edit_bu{{$code->id}}" data-toggle="modal" title='Edit' class="btn btn-outline-dark">Edit</button>
+                                        @if($code['cluster_head_info'] != null){{$code['cluster_head_info']->first_name.' '.$code['cluster_head_info']->last_name}} @endif
+                                    </td>
+                                    <td>
+                                        @if($code['bu_head_info'] != null){{$code['bu_head_info']->first_name.' '.$code['bu_head_info']->last_name}} @endif
+                                    </td>
+                                    <td>
+                                        @php
+                                            // $count_data = count($code['managers_data']);
+                                            $array_manager = collect($code['managers_data']->pluck('manager_id'))->toArray();
+                                        @endphp
+                                            
+                                        @foreach($code['managers_data'] as $manager)
+                                            {{$manager['employee_info']->first_name.' '.$manager['employee_info']->last_name}}<br>
+                                        @endforeach
+                                    </td>
+                                    <td>
+                                        <button type="button"  href="#edit_bu{{$code->id}}" data-toggle="modal" title='Edit' class="btn btn-outline-dark">Edit</button>
                                     </td>
                                 </tr>
                                 @include('edit_bu')
-                            @endforeach
+                                @endforeach
                             </tbody>
                         </table>
                         <script  type="text/javascript">

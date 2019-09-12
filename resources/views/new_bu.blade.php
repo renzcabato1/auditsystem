@@ -13,7 +13,7 @@
             </div>
             <style>
                 
-                #roles_chosen{
+                #managers_chosen{
                     width: 100% !important;
                 }
             </style>
@@ -41,6 +41,42 @@
                         <div class='col-md-12'>
                             Code:
                             <input class='form-control' name='bu_code' required>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-md-12'>
+                            Cluster Head:
+                            <select class='form-control' name='cluster_head'>
+                                <option value=''></option>
+                                @foreach($cluster_heads as $cluster_head)
+                                <option value='{{$cluster_head->user_id}}'>{{$cluster_head['employee_info']->first_name.' '.$cluster_head['employee_info']->last_name}}</option>
+                                @endforeach
+                            </select>
+                            
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-md-12'>
+                            BU Head:
+                            <select class='form-control' name='bu_head'>
+                                <option value=''></option>
+                                @foreach($bu_heads as $bu_head)
+                                <option value='{{$bu_head->user_id}}'>{{$bu_head['employee_info']->first_name.' '.$bu_head['employee_info']->last_name}}</option>
+                                @endforeach
+                            </select>
+                            
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-md-12'>
+                            Managers:
+                            <select class='form-control chosen-select' name='managers[]' id='managers' multiple>
+                                <option value=''></option>
+                                @foreach($managers as $manager)
+                                <option value='{{$manager->user_id}}'>{{$manager['employee_info']->first_name.' '.$manager['employee_info']->last_name}}</option>
+                                @endforeach
+                            </select>
+                            
                         </div>
                     </div>
                 </div>

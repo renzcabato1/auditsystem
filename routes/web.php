@@ -42,6 +42,8 @@ Route::group( ['middleware' => 'auth'], function()
 
     //issue
     Route::get('issue','IssueController@viewIssues');
+    Route::get('get-process-owner','IssueController@viewProcessOwner');
+    Route::post('new-issue','IssueController@newIssue');
 }
 );
 
